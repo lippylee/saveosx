@@ -38,16 +38,16 @@ clear
 
 
 # Hack to circumvent system version checks for Mavericks (development)
-if [[ $(system_profiler SPSoftwareDataType | grep "System Version" | awk '{print$5}') == "10.9" ]]; then
-    sudo sed -i -n 's/10\.9/10\.8/' /System/Library/CoreServices/SystemVersion.plist
-else  
-    echo "It doesn't look like you're running 10.9(Mavericks). You should checkout the master branch..." && exit
-fi
+#if [[ $(system_profiler SPSoftwareDataType | grep "System Version" | awk '{print$5}') == "10.9" ]]; then
+#    sudo sed -i -n 's/10\.9/10\.8/' /System/Library/CoreServices/SystemVersion.plist
+#else  
+#    echo "It doesn't look like you're running 10.9(Mavericks). You should checkout the master branch..." && exit
+#fi
 
-MESSAGE=""$GREEN_UL"Circumventing System Version check"$ESC""
+#MESSAGE=""$GREEN_UL"Circumventing System Version check"$ESC""
 
-title
-echo "Looks like you're running "
+#title
+#echo "Looks like you're running "
 
 
 # Grab essential tools (Git, GCC & MacPorts)
