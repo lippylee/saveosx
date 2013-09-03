@@ -38,17 +38,11 @@ clear
 
 
 # Hack to circumvent system version checks for Mavericks (development)
-#if [[ $(system_profiler SPSoftwareDataType | grep "System Version" | awk '{print$5}') == "10.9" ]]; then
-#    sudo sed -i -n 's/10\.9/10\.8/' /System/Library/CoreServices/SystemVersion.plist
-#else  
-#    echo "It doesn't look like you're running 10.9(Mavericks). You should checkout the master branch..." && exit
-#fi
-
-#MESSAGE=""$GREEN_UL"Circumventing System Version check"$ESC""
-
-#title
-#echo "Looks like you're running "
-
+if [[ $(system_profiler SPSoftwareDataType | grep "System Version" | awk '{print$5}') == "10.9" ]]; then
+    sudo sed -i -n 's/10\.9/10\.8/' /System/Library/CoreServices/SystemVersion.plist
+else  
+    echo "It doesn't look like you're running 10.9(Mavericks). You should checkout the master branch..." && exit
+fi
 
 # Grab essential tools (Git, GCC & MacPorts)
 MESSAGE=""$RED_UL"Essential Tools$ESC"
@@ -109,3 +103,5 @@ sudo xcode-select --switch /usr/bin 2>&1 > /dev/null
 echo ""$GREEN"Cloning the Save OS X Git repo for other scripts..."
 cd ~ ; git clone https://github.com/Phyrne/saveosx
 cd ~/saveosx
+# Undo the dirty version hack
+sudo sed -i -n 's/10\.8/10\.9/' /System/Library/CoreServices/SystemVersion.plist
